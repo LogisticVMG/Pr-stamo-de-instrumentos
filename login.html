@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | Préstamo de Instrumentos</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <h1>Acceso Maestros</h1>
+  <form id="loginForm">
+    <label for="nombre">Tu nombre:</label>
+    <input type="text" id="nombre" required />
+
+    <label for="clave">Clave de acceso:</label>
+    <input type="password" id="clave" required />
+
+    <button type="submit">Entrar</button>
+  </form>
+
+  <script>
+    
+    const CLAVES_VALIDAS = {
+      "maestro1@example.com": "clave123",
+      "maestro2@example.com": "otroclave",
+      "Adrianguapo": "Adrian123"
+      
+    };
+
+    document.getElementById("loginForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value.trim();
+      const clave  = document.getElementById("clave").value.trim();
+
+      
+      if (CLAVES_VALIDAS[nombre] === clave) {
+        
+        localStorage.setItem("usuario", nombre);
+        window.location.href = "prestamo.html";
+      } else {
+        alert("Nombre o clave incorrectos.");
+      }
+    });
+  </script>
+</body>
+</html>
